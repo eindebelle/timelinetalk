@@ -17,12 +17,13 @@ function Play(){
                     synthes.volume = document.querySelector( "#slider-volume" ).value;
                     speechSynthesis.speak( synthes );
                 },
-                (minute * 60 + seconds) * 1000
+                (parseInt(minute) * 60 + parseInt(seconds)) * 1000
             ) );
     } );
 }
 
 function Stop(){
+    console.log( "Stop." );
     g_timer_ids.forEach( ( id ) => {
         clearTimeout( id );
     } )
