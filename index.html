@@ -99,7 +99,9 @@
   [&::-moz-range-track]:w-full
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
-  [&::-moz-range-track]:rounded-full" id="slider-speed" min="0" max="1" step="0.1" value="1.0">
+  [&::-moz-range-track]:rounded-full" id="slider-speed" min="0" max="2" step="0.1" value="1.0">
+      <label for="offset-time" class="">オフセット：</label>
+      <input id="offset-time" type="number" value="10" size="2"  class=""/>秒
     </div>
     <button id="btn-play" type="button"
             class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">

@@ -1,11 +1,19 @@
 let g_timer_ids = [];
 
+// #offset-time の値（秒）を取得してミリ秒に変換
+function getOffsetMs(){
+    const offsetSec = parseInt( document.querySelector( "#offset-time" ).value ) || 0;
+    return offsetSec * 1000;
+}
+
 function Play(){
     Stop();
     let text = document.querySelector( "#speech-text" ).value;
     text.split( /\n/ ).forEach( ( line ) => {
         let [_, minute, seconds, str] = line.match( /(\d+):(\d+)\s+(.*)/ );
         console.log( minute, seconds, str );
+        const offsetMs = getOffsetMs();
+        let timeoutMs = (parseInt( minute ) * 60 + parseInt( seconds )) * 1000 + offsetMs;
         g_timer_ids.push(
             setTimeout( () => {
                     console.log( new Date() );
@@ -17,7 +25,7 @@ function Play(){
                     synthes.volume = document.querySelector( "#slider-volume" ).value;
                     speechSynthesis.speak( synthes );
                 },
-                (parseInt(minute) * 60 + parseInt(seconds)) * 1000
+                timeoutMs
             ) );
     } );
 }
