@@ -138,7 +138,7 @@ window.addEventListener( "DOMContentLoaded", () => {
         seekTime.textContent = formatTime(seekBar.value);
     });
     seekBar.addEventListener("change", () => {
-        // g_seek_seconds = parseInt(seekBar.value);
+        g_seek_seconds = parseInt(seekBar.value);
         // Play(g_seek_seconds);
     });
     // 再生停止時にシークバーを止める
