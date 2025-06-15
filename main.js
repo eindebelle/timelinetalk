@@ -6,8 +6,13 @@ function getOffsetMs(){
     return offsetSec * 1000;
 }
 
+function setStatus(msg) {
+    document.getElementById("status").textContent = msg;
+}
+
 function Play(){
     Stop();
+    setStatus("再生中");
     let text = document.querySelector( "#speech-text" ).value;
     text.split( /\n/ ).forEach( ( line ) => {
         let [_, minute, seconds, str] = line.match( /(\d+):(\d+)\s+(.*)/ );
@@ -36,6 +41,7 @@ function Stop(){
         clearTimeout( id );
     } )
     g_timer_ids = [];
+    setStatus("停止");
 }
 
 window.addEventListener( "DOMContentLoaded", () => {
