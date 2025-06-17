@@ -98,6 +98,23 @@ function stopSeekBarTimer() {
     }
 }
 
+// シークバーを0にリセットする
+function rewindSeekBar() {
+    const seekBar = document.getElementById("seek-bar");
+    const seekTime = document.getElementById("seek-time");
+
+    // シーク位置を0にリセット
+    g_seek_seconds = 0;
+    seekBar.value = 0;
+    seekTime.textContent = "0:00";
+
+    // 再生中なら停止してから0から再生
+    if (g_playing) {
+        Stop();
+        Play(0);
+    }
+}
+
 window.addEventListener( "DOMContentLoaded", () => {
     let voices = speechSynthesis.getVoices();
     let select = document.querySelector( "#select-speaker" );
@@ -114,6 +131,10 @@ window.addEventListener( "DOMContentLoaded", () => {
 
     document.querySelector( "#btn-stop" ).addEventListener( "click", () => {
         Stop();
+    } );
+
+    document.querySelector( "#btn-rewind" ).addEventListener( "click", () => {
+        rewindSeekBar();
     } );
 
     // シークバーの初期化・更新
